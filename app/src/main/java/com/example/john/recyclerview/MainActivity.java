@@ -1,14 +1,17 @@
-package com.example.john.testrecycler_in_recyclerview;
+package com.example.john.recyclerview;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
+import com.example.john.recyclerview.adapter.RecyclerAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView mRecyclerView1,mRecyclerView2;
 
@@ -41,5 +44,26 @@ public class MainActivity extends AppCompatActivity {
 
 
         //mRecyclerView2.setAdapter(adapter);
+
+       findViewById(R.id.btn_enter).setOnClickListener(this);
+        findViewById(R.id.btn_enter_1).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+
+            case R.id.btn_enter: //card
+
+                Intent intent = new Intent(this,CardActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.btn_enter_1:
+
+
+                break;
+        }
     }
 }

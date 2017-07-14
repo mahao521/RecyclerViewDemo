@@ -1,4 +1,4 @@
-package com.example.john.testrecycler_in_recyclerview;
+package com.example.john.recyclerview;
 
 import org.junit.Test;
 

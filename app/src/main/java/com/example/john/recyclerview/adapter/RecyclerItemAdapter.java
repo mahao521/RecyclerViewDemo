@@ -1,4 +1,4 @@
-package com.example.john.testrecycler_in_recyclerview;
+package com.example.john.recyclerview.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.john.recyclerview.R;
 
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ public class RecyclerItemAdapter  extends RecyclerView.Adapter<RecyclerItemAdapt
     @Override
     public TestViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        final View inflate = LayoutInflater.from(mContext).inflate(R.layout.test_item_item,parent,false);
+        final View inflate = LayoutInflater.from(mContext).inflate(R.layout.main_item_item,parent,false);
         return new TestViewHolder(inflate);
     }
 
@@ -53,8 +55,9 @@ public class RecyclerItemAdapter  extends RecyclerView.Adapter<RecyclerItemAdapt
         private TextView txtView;
 
         public TestViewHolder(View itemView) {
+
             super(itemView);
-              txtView = (TextView) itemView.findViewById(R.id.txt);
+            txtView = (TextView) itemView.findViewById(R.id.txt);
         }
     }
 }

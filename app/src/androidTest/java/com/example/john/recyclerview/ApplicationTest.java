@@ -1,4 +1,4 @@
-package com.example.john.testrecycler_in_recyclerview;
+package com.example.john.recyclerview;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

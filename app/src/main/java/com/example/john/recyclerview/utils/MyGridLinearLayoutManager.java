@@ -1,16 +1,14 @@
-package com.example.john.testrecycler_in_recyclerview;
+package com.example.john.recyclerview.utils;
 
 /**
  * Created by John on 2016/2/18.
  */
 
-//工具类实在 外网搜到的 wrap_content recyclerview
-//工具类在  外网搜到的 GridLayoutmanager wrap_content;
-
 import android.content.Context;
 import android.graphics.Rect;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -35,30 +33,51 @@ public class MyGridLinearLayoutManager extends GridLayoutManager {
             int viewWidth = 0;
             int viewHeight = 0;
 
+            //有多少个列for a grid;
             int spanCount = getSpanCount();
 
             for (int i = 0; i < getItemCount(); i++) {
 
-                measureScrapChild(recycler, i, View.MeasureSpec.makeMeasureSpec(i, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(i, View.MeasureSpec.UNSPECIFIED), measuredSize);
+
+                //计算一个Item的长和宽----包含了控件间隙
+                measureScrapChild(recycler, i, View.MeasureSpec.makeMeasureSpec(i,
+                        View.MeasureSpec.UNSPECIFIED),
+                        View.MeasureSpec.makeMeasureSpec(i, View.MeasureSpec.UNSPECIFIED),
+                        measuredSize);
 
                 if (i % spanCount == 0) {
+
                     spanWidth = measuredSize[0];
+                    Log.i("mahao",spanWidth + "..2.." + spanCount);
                     spanHeight = measuredSize[1];
+                    Log.i("mahao",spanHeight + "..2.." + i);
+
                 } else {
+
                     if (getOrientation() == VERTICAL) {
+
+                        Log.i("mahao",1234+".......a");
                         spanWidth += measuredSize[0];
                         spanHeight = Math.max(spanHeight, measuredSize[1]);
+
                     } else {
+
+                        Log.i("mahao",1234+".......b");
                         spanWidth = Math.max(spanWidth, measuredSize[0]);
                         spanHeight += measuredSize[1];
                     }
                 }
 
+                //换行，高度叠加，或者宽度叠加
                 if (i % spanCount == spanCount - 1 || i == getItemCount() - 1) {
                     if (getOrientation() == VERTICAL) {
+
+                        Log.i("mahao",1234+".......c");
                         viewWidth = Math.max(viewWidth, spanWidth);
                         viewHeight += spanHeight;
                     } else {
+
+                        Log.i("mahao",1234+".......d");
                         viewWidth += spanWidth;
                         viewHeight = Math.max(viewHeight, spanHeight);
                     }
@@ -104,12 +123,14 @@ public class MyGridLinearLayoutManager extends GridLayoutManager {
 
         private void measureScrapChild(RecyclerView.Recycler recycler, int position, int widthSpec, int heightSpec, int[] measuredDimension) {
 
+            //btain a view initialized for the given position.
             View view = recycler.getViewForPosition(position);
 
             if (view != null) {
 
                 RecyclerView.LayoutParams p = (RecyclerView.LayoutParams) view.getLayoutParams();
 
+                //a MeasureSpec integer for the child
                 int childWidthSpec = ViewGroup.getChildMeasureSpec(widthSpec, getPaddingLeft() + getPaddingRight(), p.width);
                 int childHeightSpec = ViewGroup.getChildMeasureSpec(heightSpec, getPaddingTop() + getPaddingBottom(), p.height);
 
@@ -119,12 +140,18 @@ public class MyGridLinearLayoutManager extends GridLayoutManager {
                 measuredDimension[1] = view.getMeasuredHeight() + p.bottomMargin + p.topMargin;
 
                 Rect decoratorRect = new Rect();
+
+                //Calculates the item decor insets applied to the given child and updates the provided
+               // * Rect instance with the inset values.
                 calculateItemDecorationsForChild(view, decoratorRect);
                 measuredDimension[0] += decoratorRect.left;
                 measuredDimension[0] += decoratorRect.right;
                 measuredDimension[1] += decoratorRect.top;
                 measuredDimension[1] += decoratorRect.bottom;
 
+                Log.i("mahao",measuredDimension[0]+"......222......." + measuredDimension[1]);
+
+                //recycle this view for rebinding or reuse;
                 recycler.recycleView(view);
             }
         }

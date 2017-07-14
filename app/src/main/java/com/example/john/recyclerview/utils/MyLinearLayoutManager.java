@@ -1,4 +1,4 @@
-package com.example.john.testrecycler_in_recyclerview;
+package com.example.john.recyclerview.utils;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;

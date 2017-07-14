@@ -1,13 +1,13 @@
-package com.example.john.testrecycler_in_recyclerview;
+package com.example.john.recyclerview.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.example.john.recyclerview.utils.MyGridLinearLayoutManager;
+import com.example.john.recyclerview.R;
 
 import java.util.ArrayList;
 
@@ -20,8 +20,6 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.TestV
     private Context mContext;
     private ArrayList<String> mList;
 
-
-
     public RecyclerAdapter(Context mContext,ArrayList<String> list){
 
         this.mContext = mContext;
@@ -32,7 +30,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.TestV
     @Override
     public TestViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-      View inflate = LayoutInflater.from(mContext).inflate(R.layout.test_item,parent,false);
+      View inflate = LayoutInflater.from(mContext).inflate(R.layout.main_item,parent,false);
         return new TestViewHolder(inflate);
     }
 
@@ -50,10 +48,6 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.TestV
 
  /*      MyLinearLayoutManager linearLayoutManager = new MyLinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false);
         holder.recyclerview.setLayoutManager(linearLayoutManager);*/
-
-        MyGridLinearLayoutManager gridLayoutMan = new MyGridLinearLayoutManager(mContext,4);
-        holder.recyclerview.setLayoutManager(gridLayoutMan);
-        holder.recyclerview.setAdapter(new RecyclerItemAdapter(mContext,mList));
 
     }
 
@@ -76,6 +70,10 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.TestV
             super(itemView);
           //  txtView = (TextView) itemView.findViewById(R.id.txt);
             recyclerview = (RecyclerView) itemView.findViewById(R.id.recyclerview_item_1);
+
+            MyGridLinearLayoutManager gridLayoutMan = new MyGridLinearLayoutManager(mContext,4);
+            recyclerview.setLayoutManager(gridLayoutMan);
+            recyclerview.setAdapter(new RecyclerItemAdapter(mContext,mList));
         }
     }
 }
