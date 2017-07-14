@@ -2,7 +2,6 @@ package com.example.john.recyclerview.utils;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -85,7 +84,7 @@ public class SwipLayoutManager extends RecyclerView.LayoutManager {
 
             view.layout(left,top ,right,bottom );
 
-            Log.i("mahao",left + "..." + right +"..." + bottom + "..." + top);
+           // Log.i("mahao",left + "..." + right +"..." + bottom + "..." + top);
 
             //做一个层次效果
             int level = itemCount - i; // 4 3 2 1

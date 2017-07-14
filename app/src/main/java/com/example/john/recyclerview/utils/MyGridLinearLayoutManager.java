@@ -48,15 +48,15 @@ public class MyGridLinearLayoutManager extends GridLayoutManager {
                 if (i % spanCount == 0) {
 
                     spanWidth = measuredSize[0];
-                    Log.i("mahao",spanWidth + "..2.." + spanCount);
+                   // Log.i("mahao",spanWidth + "..2.." + spanCount);
                     spanHeight = measuredSize[1];
-                    Log.i("mahao",spanHeight + "..2.." + i);
+                  //  Log.i("mahao",spanHeight + "..2.." + i);
 
                 } else {
 
                     if (getOrientation() == VERTICAL) {
 
-                        Log.i("mahao",1234+".......a");
+                       // Log.i("mahao",1234+".......a");
                         spanWidth += measuredSize[0];
                         spanHeight = Math.max(spanHeight, measuredSize[1]);
 
@@ -72,12 +72,12 @@ public class MyGridLinearLayoutManager extends GridLayoutManager {
                 if (i % spanCount == spanCount - 1 || i == getItemCount() - 1) {
                     if (getOrientation() == VERTICAL) {
 
-                        Log.i("mahao",1234+".......c");
+                     //   Log.i("mahao",1234+".......c");
                         viewWidth = Math.max(viewWidth, spanWidth);
                         viewHeight += spanHeight;
                     } else {
 
-                        Log.i("mahao",1234+".......d");
+                      //  Log.i("mahao",1234+".......d");
                         viewWidth += spanWidth;
                         viewHeight = Math.max(viewHeight, spanHeight);
                     }
@@ -149,7 +149,7 @@ public class MyGridLinearLayoutManager extends GridLayoutManager {
                 measuredDimension[1] += decoratorRect.top;
                 measuredDimension[1] += decoratorRect.bottom;
 
-                Log.i("mahao",measuredDimension[0]+"......222......." + measuredDimension[1]);
+              //  Log.i("mahao",measuredDimension[0]+"......222......." + measuredDimension[1]);
 
                 //recycle this view for rebinding or reuse;
                 recycler.recycleView(view);
